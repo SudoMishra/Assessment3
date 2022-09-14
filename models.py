@@ -37,7 +37,7 @@ import seaborn as sns
 
 parser = argparse.ArgumentParser(description="Action Recognition on UCF 101 Model")
 parser.add_argument(
-    "--model", choices=["LSTM", "CNN"], default="LSTM", help="Model Type"
+    "--model", choices=["LSTM", "ANN"], default="LSTM", help="Model Type"
 )
 parser.add_argument(
     "--pretrained",
@@ -148,7 +148,7 @@ def fine_tune_classifier(feature_shape):
     return model
 
 
-def fine_tune_classifier_CNN(feature_shape):
+def fine_tune_classifier_ANN(feature_shape):
     input_shape = feature_shape
     inp_seq = Input(shape=input_shape)
     x = Flatten()(inp_seq)
@@ -269,8 +269,8 @@ def main(args):
         print("Loading LSTM Model")
         print(model.summary())
     else:
-        model = fine_tune_classifier_CNN(x_train.shape[1:])
-        print("Loading CNN Model")
+        model = fine_tune_classifier_ANN(x_train.shape[1:])
+        print("Loading ANN Model")
 
     reduce_lr = keras.callbacks.ReduceLROnPlateau(
         monitor="val_loss", factor=0.9, patience=5, min_lr=1e-7

@@ -37,7 +37,7 @@ import seaborn as sns
 
 parser = argparse.ArgumentParser(description="Action Recognition on UCF 101 Model")
 parser.add_argument(
-    "--model", choices=["LSTM", "CNN"], default="LSTM", help="Model Type"
+    "--model", choices=["LSTM", "ANN"], default="LSTM", help="Model Type"
 )
 parser.add_argument(
     "--pretrained",
